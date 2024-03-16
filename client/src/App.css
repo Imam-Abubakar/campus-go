@@ -1,0 +1,72 @@
+@font-face {
+  font-family: Almarena;
+  src: url("./assets/fonts/Almarena.otf") format("opentype")
+}
+
+@font-face {
+  font-family: AlmarenaBold;
+  src: url("./assets/fonts/Almarena Bold.otf") format("opentype")
+}
+
+@font-face {
+  font-family: AlmarenaDisplayBold;
+  src: url("./assets/fonts/Almarena Display Bold.otf") format("opentype")
+}
+
+@font-face {
+  font-family: AlmarenaDisplayLight;
+  src: url("./assets/fonts/Almarena Display Light.otf") format("opentype")
+}
+
+@font-face {
+  font-family: AlmarenaDisplayRegular;
+  src: url("./assets/fonts/Almarena Display Regular.otf") format("opentype")
+}
+
+@font-face {
+  font-family: AlmarenaLight;
+  src: url("./assets/fonts/Almarena Light.otf") format("opentype")
+}
+
+
+html {
+    touch-action: pan-x pan-y !important;
+    -webkit-user-scalable: no;
+    -ms-user-scalable: none;
+    -user-scalable: no;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+   
+  }
+
+
+body {
+  font-family: "Almarena";
+  touch-action: manipulation;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
+  }
+
+.font-al-bolder {
+  font-family: "AlmarenaDisplayBold";
+}
+
+.font-al-bold {
+  font-family: "AlmarenaBold";
+}
+
+.font-al-medium {
+  font-family: "AlmarenaDisplayRegular";
+}
+
+.font-al-light {
+  font-family: "AlmarenaLight";
+}
+
+.font-al-lighter {
+  font-family: "AlmarenaDisplayLight";
+}
