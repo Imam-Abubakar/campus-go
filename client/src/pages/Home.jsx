@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import HideText from "../components/HideText";
+import { Link } from "react-router-dom";
 
 import scanImg from "../assets/images/scan.png";
 import receiptImg from "../assets/images/receipt.png";
@@ -62,12 +63,12 @@ const Home = () => {
             </div>
             <img src={scanImg} className="w-24" alt="scan" />
           </div>
-          <div className="bg-black rounded-lg shadow-md px-6 py-6 md:w-96 my-2 text-white flex justify-between items-center">
+          <Link to="/history" className="bg-black rounded-lg shadow-md px-6 py-6 md:w-96 my-2 text-white flex justify-between items-center">
             <div className="text-lg font-normal font-al-medium tracking-wide md:w-64">
               You can now generate receipts for your rides and transactions
             </div>
             <img src={receiptImg} className="w-24" alt="scan" />
-          </div>
+          </Link>
           <div className="bg-black rounded-lg shadow-md px-6 py-6 md:w-96 my-2 text-white flex justify-between items-center">
             <div className="text-lg font-normal font-al-medium tracking-wide md:w-64">
               <div className="text-xs bg-[#3F713E] py-1 px-2 border w-max rounded-full mb-2">

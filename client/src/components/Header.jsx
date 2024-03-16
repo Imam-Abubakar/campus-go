@@ -18,6 +18,10 @@ const Header = () => {
         return "Settings";
       case "/history":
         return "Transaction History";
+      case "/transfer":
+        return "Transfer";
+      case "/wallet":
+        return "Wallet";
       default:
         return "";
     }

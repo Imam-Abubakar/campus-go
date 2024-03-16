@@ -6,7 +6,7 @@ import History from "./pages/History";
 import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
-import Transactions from "./pages/Transactions";
+import Transfers from "./pages/Transfers";
 import Scanner from "./pages/Scanner";
 import Layout from "./components/Layout";
 
@@ -23,7 +23,7 @@ const App = () => {
           <Route exact path="/settings" element={<Settings />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/feedback" element={<Feedback />} />
-          <Route exact path="/transfer" element={<Transactions />} />
+          <Route exact path="/transfer" element={<Transfers />} />
           <Route exact path="/scanner" element={<Scanner />} />
         </Routes>
       </Layout>
