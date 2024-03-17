@@ -7,14 +7,18 @@ import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
 import Transfers from "./pages/Transfers";
-import Scanner from "./pages/Scanner";
+import Rides from "./pages/Rides";
 import Layout from "./components/Layout";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 import "./App.css";
 
 const App = () => {
   return (
     <div>
+      <ToastContainer />
       <Layout>
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -24,7 +28,7 @@ const App = () => {
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/feedback" element={<Feedback />} />
           <Route exact path="/transfer" element={<Transfers />} />
-          <Route exact path="/scanner" element={<Scanner />} />
+          <Route exact path="/rides" element={<Rides />} />
         </Routes>
       </Layout>
     </div>

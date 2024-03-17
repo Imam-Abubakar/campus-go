@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import {
   RiHomeGearFill,
-  RiBitCoinFill,
+  RiHistoryFill,
   RiWallet2Fill,
   RiExchange2Fill,
   RiBus2Fill,
-  RiSettings2Fill,
+  
 } from "@remixicon/react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -70,6 +70,17 @@ const Layout = ({ children }) => {
               <li>
                 <Link
                   className={`py-3 flex gap-4 font-al-medium items-center font-normal text-md cursor-pointer ${isActiveDesktop(
+                    "/rides"
+                  )}`}
+                  to="/rides"
+                >
+                  <RiBus2Fill className="text-xl" />
+                  Rides
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={`py-3 flex gap-4 font-al-medium items-center font-normal text-md cursor-pointer ${isActiveDesktop(
                     "/transfer"
                   )}`}
                   to="/transfer"
@@ -85,19 +96,8 @@ const Layout = ({ children }) => {
                   )}`}
                   to="/history"
                 >
-                  <RiBus2Fill className="text-xl" />
+                  <RiHistoryFill className="text-xl" />
                   History
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className={`py-3 flex gap-4 font-al-medium items-center font-normal text-md cursor-pointer ${isActiveDesktop(
-                    "/settings"
-                  )}`}
-                  to="/settings"
-                >
-                  <RiSettings2Fill className="text-xl" />
-                  Settings
                 </Link>
               </li>
             </ul>
@@ -140,6 +140,17 @@ const Layout = ({ children }) => {
           </li>
           <li>
             <Link
+              to="/rides"
+              className={`py-3 flex flex-col text-gray-500 hover:text-black font-al-medium items-center font-normal text-sm cursor-pointer ${isActive(
+                "/rides"
+              )}`}
+            >
+              <RiBus2Fill className="text-xl" />
+              Rides
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/transfer"
               className={`py-3 flex flex-col text-gray-500 hover:text-black font-al-medium items-center font-normal text-sm cursor-pointer ${isActive(
                 "/transfer"
@@ -156,19 +167,8 @@ const Layout = ({ children }) => {
                 "/history"
               )}`}
             >
-              <RiBus2Fill className="text-xl" />
+              <RiHistoryFill className="text-xl" />
               History
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/settings"
-              className={`py-3 flex flex-col text-gray-500 hover:text-black font-al-medium items-center font-normal text-sm cursor-pointer ${isActive(
-                "/settings"
-              )}`}
-            >
-              <RiSettings2Fill className="text-xl" />
-              Settings
             </Link>
           </li>
         </ul>

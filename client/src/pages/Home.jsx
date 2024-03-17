@@ -45,7 +45,7 @@ const Home = () => {
               Exchange Rate
             </h2>
             <p className="text-xl font-bold font-al-bold text-white">
-              1 BTF = ₦ 100
+              1 BFT = ₦ 100
             </p>
           </div>
         </div>
@@ -53,17 +53,23 @@ const Home = () => {
       <div>
         <div className="flex gap-2 mt-2 md:mt-6 align-items">
           <div className="font-al-light font-bold text-sm">
-            Latest features just for you
+            Try out these features
           </div>
         </div>
         <div className="flex gap-2 md:gap-4 flex-wrap">
-          <div className="bg-black rounded-lg shadow-md px-6 py-6 md:w-96 my-2 text-white flex justify-between items-center">
+          <Link
+            to="/rides"
+            className="bg-black rounded-lg shadow-md px-6 py-6 md:w-96 my-2 text-white flex justify-between items-center"
+          >
             <div className="text-lg font-normal font-al-medium tracking-wide md:w-64">
               Scan your driver's special QRCode to make ride payments
             </div>
             <img src={scanImg} className="w-24" alt="scan" />
-          </div>
-          <Link to="/history" className="bg-black rounded-lg shadow-md px-6 py-6 md:w-96 my-2 text-white flex justify-between items-center">
+          </Link>
+          <Link
+            to="/history"
+            className="bg-black rounded-lg shadow-md px-6 py-6 md:w-96 my-2 text-white flex justify-between items-center"
+          >
             <div className="text-lg font-normal font-al-medium tracking-wide md:w-64">
               You can now generate receipts for your rides and transactions
             </div>

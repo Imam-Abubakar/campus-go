@@ -14,7 +14,7 @@ const Transfers = () => {
   const [isSendingModalOpen, setIsSendingModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [isFailureModalOpen, setIsFailureModalOpen] = useState(false);
-  const [isScanMode, setIsScanMode] = useState(false);
+  const [isScanMode, setIsScanMode] = useState(true);
   const [scanData, setScanData] = useState(null);
 
   useEffect(() => {
@@ -41,21 +41,21 @@ const Transfers = () => {
       <div className="flex mb-4 gap-4 p-2 bg-gray-300 rounded-lg w-max mx-auto lg:mx-0 justify-center items-center text-sm">
         <button
           className={`flex flex-row gap-2 px-4 lg:px-12 py-2 rounded ${
-            !isScanMode ? "bg-black text-white" : "bg-gray-300 text-black"
-          }`}
-          onClick={handleToggleScanMode}
-        >
-          <RiUserFill />
-          Username
-        </button>
-        <button
-          className={`flex flex-row gap-2 px-4 lg:px-12 py-2 rounded ${
             isScanMode ? "bg-black text-white" : "bg-gray-300 text-black"
           }`}
           onClick={handleToggleScanMode}
         >
           <RiQrCodeFill />
           QR Code
+        </button>
+        <button
+          className={`flex flex-row gap-2 px-4 lg:px-12 py-2 rounded ${
+            !isScanMode ? "bg-black text-white" : "bg-gray-300 text-black"
+          }`}
+          onClick={handleToggleScanMode}
+        >
+          <RiUserFill />
+          Username
         </button>
       </div>
 
@@ -85,7 +85,8 @@ const Transfers = () => {
         onClose={() => setIsFailureModalOpen(false)}
       >
         <RiErrorWarningFill className="text-2xl text-red-500" />
-        Transfer failed <br/><span className="font-al-light text-sm">Please try again</span>
+        Transfer failed <br />
+        <span className="font-al-light text-sm">Please try again</span>
       </TransferModal>
     </div>
   );

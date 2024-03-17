@@ -18,7 +18,7 @@ const sampleTransactions = [
   {
     id: 1,
     type: "incoming",
-    amount: 50000,
+    amount: 500,
     recipientName: "John Doe",
     recipientUsername: "johndoe123",
     dateTime: "2024-03-18T08:00:00Z",
@@ -29,7 +29,7 @@ const sampleTransactions = [
   {
     id: 2,
     type: "outgoing",
-    amount: 20000,
+    amount: 200,
     recipientName: "Alice Smith",
     recipientUsername: "alice123",
     dateTime: "2024-03-17T12:30:00Z",
@@ -40,7 +40,7 @@ const sampleTransactions = [
   {
     id: 3,
     type: "incoming",
-    amount: 30000,
+    amount: 300,
     recipientName: "Bob Johnson",
     recipientUsername: "bob123",
     dateTime: "2024-03-16T10:15:00Z",
@@ -51,7 +51,7 @@ const sampleTransactions = [
   {
     id: 4,
     type: "outgoing",
-    amount: 10000,
+    amount: 1000,
     recipientName: "Emily Brown",
     recipientUsername: "emily456",
     dateTime: "2024-03-15T14:45:00Z",
@@ -62,7 +62,7 @@ const sampleTransactions = [
   {
     id: 5,
     type: "incoming",
-    amount: 2500,
+    amount: 250,
     recipientName: "Charlie Davis",
     recipientUsername: "charlie789",
     dateTime: "2024-03-14T11:30:00Z",
@@ -73,7 +73,7 @@ const sampleTransactions = [
   {
     id: 6,
     type: "outgoing",
-    amount: 15000,
+    amount: 1500,
     recipientName: "Ella Wilson",
     recipientUsername: "ella987",
     dateTime: "2024-03-13T09:20:00Z",
