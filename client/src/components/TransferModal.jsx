@@ -4,7 +4,7 @@ const TransferModal = ({ isOpen, onClose, children }) => {
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 flex items-center flex-col gap-2  justify-center bg-black bg-opacity-50">
+        <div className="fixed z-20 inset-0 flex items-center flex-col gap-2  justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 lg:px-32 rounded-lg flex flex-col justify-center items-center">
             <div className="flex justify-center flex-col gap-2 items-center font-al-bold text-md">{children}</div>
 

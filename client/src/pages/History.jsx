@@ -174,7 +174,7 @@ const HistoryPage = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 ">
         {filteredTransactions.map((transaction) => (
           <div
             key={transaction.id}
@@ -209,7 +209,7 @@ const HistoryPage = () => {
       {selectedTransaction && (
         <div
           id="transaction-details"
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+          className="fixed z-20 inset-0 flex items-center justify-center bg-black bg-opacity-50"
         >
           <div className="w-[85vw] lg:w-[30vw]">
             <p className="bg-gray-200 px-4 py-4 rounded-t-lg font-al-bolder text-lg">

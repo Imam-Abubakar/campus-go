@@ -15,7 +15,7 @@ const formatDate = (dateTimeString) => {
 
 const RideModal = ({ ride, onClose }) => {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed z-20 inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="w-[85vw] lg:w-[30vw]">
         <p className="bg-gray-200 px-4 py-4 rounded-t-lg font-al-bolder text-lg">
           Ride Details
