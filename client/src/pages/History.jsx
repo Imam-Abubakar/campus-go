@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RiArrowUpCircleFill, RiArrowDownCircleFill } from "@remixicon/react";
 import html2canvas from "html2canvas";
+import Loader from "../components/Loader.jsx";
+import { useAuth } from "../context/AuthProvider";
+import { useUser } from "../context/UserProvider";
+import ReadContract from "../plugins/readContract.js";
+import { utils } from "ethers";
 
 const formatDate = (dateTimeString) => {
   const options = {
@@ -14,85 +19,23 @@ const formatDate = (dateTimeString) => {
   return new Date(dateTimeString).toLocaleString("en-US", options);
 };
 
-const sampleTransactions = [
-  {
-    id: 1,
-    type: "incoming",
-    amount: 500,
-    recipientName: "John Doe",
-    recipientUsername: "johndoe123",
-    dateTime: "2024-03-18T08:00:00Z",
-    description: "Bus ride payment",
-    fee: 0,
-    uniqueId: "abc123",
-  },
-  {
-    id: 2,
-    type: "outgoing",
-    amount: 200,
-    recipientName: "Alice Smith",
-    recipientUsername: "alice123",
-    dateTime: "2024-03-17T12:30:00Z",
-    description: "Transfer to user",
-    fee: 1,
-    uniqueId: "def456",
-  },
-  {
-    id: 3,
-    type: "incoming",
-    amount: 300,
-    recipientName: "Bob Johnson",
-    recipientUsername: "bob123",
-    dateTime: "2024-03-16T10:15:00Z",
-    description: "Wallet top-up",
-    fee: 0,
-    uniqueId: "ghi789",
-  },
-  {
-    id: 4,
-    type: "outgoing",
-    amount: 1000,
-    recipientName: "Emily Brown",
-    recipientUsername: "emily456",
-    dateTime: "2024-03-15T14:45:00Z",
-    description: "Withdrawal",
-    fee: 0.5,
-    uniqueId: "jkl012",
-  },
-  {
-    id: 5,
-    type: "incoming",
-    amount: 250,
-    recipientName: "Charlie Davis",
-    recipientUsername: "charlie789",
-    dateTime: "2024-03-14T11:30:00Z",
-    description: "Bus ride payment",
-    fee: 0,
-    uniqueId: "mno345",
-  },
-  {
-    id: 6,
-    type: "outgoing",
-    amount: 1500,
-    recipientName: "Ella Wilson",
-    recipientUsername: "ella987",
-    dateTime: "2024-03-13T09:20:00Z",
-    description: "Transfer to user",
-    fee: 1.5,
-    uniqueId: "pqr678",
-  },
-  // Add more sample transactions as needed
-];
-
 const HistoryPage = () => {
-  const [transactions, setTransactions] = useState(sampleTransactions);
+  const { user, auth } = useAuth();
+  const [transactions, setTransactions] = useState([]);
+  const { getUserByUsername, fetchUser, users } = useUser();
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
   const [filter, setFilter] = useState("all");
 
+  const nairaEquivalent = 4.5;
+
   const handleTransactionClick = (transaction) => {
     setSelectedTransaction(transaction);
-    // Open transaction details popup or modal
   };
+
+  useEffect(() => {
+    getTransactionHistory();
+  }, []);
 
   const handleDownloadReceipt = () => {
     // Select the transaction details modal element
@@ -136,13 +79,34 @@ const HistoryPage = () => {
     }
   };
 
+  const getTransactionHistory = async () => {
+    if (auth) {
+      fetchUser(user.email);
+    }
+    const transactionHistory = await ReadContract.getAllTransactions();
+    setIsLoading(false);
+    //console.log(transactionHistory);
+    const filteredHistory = transactionHistory.filter(
+      (history) =>
+        history.recipientAddress == users?.wallet_address ||
+        history.senderAddress == users?.wallet_address
+    );
+    setTransactions(filteredHistory);
+  };
+
+  // console.log(transactions);
+
   const filteredTransactions =
     filter === "all"
       ? transactions
-      : transactions.filter((transaction) => transaction.type === filter);
+      : transactions.filter(
+          (transaction) =>
+            (transaction.senderAddress != users.wallet_address) == filter
+        );
 
   return (
     <div className="md:mt-8 py-4 px-4 md:px-12 ">
+      {isLoading && <Loader />}
       <div className="flex mb-4 gap-4 p-2 bg-gray-300 rounded-lg w-max mx-auto lg:mx-0 justify-center items-center text-sm">
         <button
           className={`px-4 lg:px-12 py-2 rounded ${
@@ -152,37 +116,34 @@ const HistoryPage = () => {
         >
           All
         </button>
+
         <button
           className={`px-4 lg:px-12 py-2 rounded ${
-            filter === "incoming"
-              ? "bg-black text-white"
-              : "bg-gray-300 text-black"
+            filter === true ? "bg-black text-white" : "bg-gray-300 text-black"
           }`}
-          onClick={() => setFilter("incoming")}
+          onClick={() => setFilter(true)}
         >
           Incoming
         </button>
         <button
           className={`px-4 lg:px-12 py-2 rounded ${
-            filter === "outgoing"
-              ? "bg-black text-white"
-              : "bg-gray-300 text-black"
+            filter === false ? "bg-black text-white" : "bg-gray-300 text-black"
           }`}
-          onClick={() => setFilter("outgoing")}
+          onClick={() => setFilter(false)}
         >
           Outgoing
         </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 ">
-        {filteredTransactions.map((transaction) => (
+        {filteredTransactions?.map((transaction) => (
           <div
             key={transaction.id}
             className="border rounded-lg cursor-pointer hover:bg-gray-100"
             onClick={() => handleTransactionClick(transaction)}
           >
             <div className="flex items-center bg-white p-4 rounded-lg">
-              {transaction.type === "incoming" ? (
+              {transaction.senderAddress != users.wallet_address ? (
                 <RiArrowUpCircleFill className="text-green-500 mr-2" />
               ) : (
                 <RiArrowDownCircleFill className="text-red-500 mr-2" />
@@ -191,44 +152,58 @@ const HistoryPage = () => {
                 <div>
                   {" "}
                   <p className=" font-al-bolder tracking-wide">
-                    {transaction.description}
+                    {transaction.transactionType}
                   </p>
-                  <p className="text-xs">{formatDate(transaction.dateTime)}</p>
+                  <p className="text-xs">
+                    {transaction.dateTime != ""
+                      ? formatDate(transaction.dateTime)
+                      : formatDate("2024-03-18T08:00:00Z")}
+                  </p>
                 </div>
 
                 <p className=" font-al-bold">
-                  {transaction.type === "incoming" ? "+" : "-"} ₦
-                  {transaction.amount}
+                  {transaction.senderAddress != users.wallet_address
+                    ? "+"
+                    : "-"}{" "}
+                  ₦
+                  {utils.formatEther(transaction.amount.toString()) *
+                    nairaEquivalent}
                 </p>
               </div>
             </div>
           </div>
         ))}
+
+       
       </div>
+      {filteredTransactions.length == 0 && (
+          <p className="my-2 text-center">No transactions yet</p>
+        )}
 
       {selectedTransaction && (
-        <div
-          id="transaction-details"
-          className="fixed z-20 inset-0 flex items-center justify-center bg-black bg-opacity-50"
-        >
-          <div className="w-[85vw] lg:w-[30vw]">
+        <div className="fixed z-20 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div id="transaction-details" className="w-[85vw] lg:w-[30vw]">
             <p className="bg-gray-200 px-4 py-4 rounded-t-lg font-al-bolder text-lg">
               Transaction Details
             </p>
             <div className="bg-white  py-4 rounded-b-lg">
               <div className="flex px-6 mt-2 justify-between flex-col lg:flex-row">
                 <p className="font-al-bold text-md ">
-                  {selectedTransaction.description}
+                  {selectedTransaction.transactionType}
                 </p>
                 <p className="font-al-lighter">
-                  {formatDate(selectedTransaction.dateTime)}
+                  {selectedTransaction.dateTime != ""
+                    ? formatDate(selectedTransaction.dateTime)
+                    : formatDate("2024-03-18T08:00:00Z")}
                 </p>
               </div>
               <div className="px-6 flex flex-col justify-center items-center py-6 my-6 bg-gray-200">
                 <p className="text-xl font-al-light">
                   Transfer of{" "}
                   <span className="font-al-bold">
-                    ₦{selectedTransaction.amount}
+                    ₦
+                    {utils.formatEther(selectedTransaction.amount.toString()) *
+                      nairaEquivalent}
                   </span>
                 </p>
                 <p className="p-1 border text-[#3F713E] bg-green-100 border-[#3F713E] text-xs rounded-full">

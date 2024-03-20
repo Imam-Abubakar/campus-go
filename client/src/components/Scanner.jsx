@@ -4,7 +4,7 @@ import Html5QrcodePlugin from "../plugins/Html5QrcodePlugin";
 const Scanner = ({ setScan }) => {
   const onNewScanResult = (decodedText, decodedResult) => {
     setScan(decodedText);
-    console.log("VALUE:", decodedText, decodedResult);
+    //console.log("VALUE:", decodedText, decodedResult);
   };
 
   return (

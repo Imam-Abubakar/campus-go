@@ -6,7 +6,7 @@ const FeedbackForm = ({ ride, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle feedback submission
-    console.log("Feedback submitted:", feedback);
+    //console.log("Feedback submitted:", feedback);
     onClose();
   };
 

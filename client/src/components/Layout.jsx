@@ -5,15 +5,19 @@ import {
   RiWallet2Fill,
   RiExchange2Fill,
   RiBus2Fill,
-  
 } from "@remixicon/react";
 import { Link, useLocation } from "react-router-dom";
+import { useUser } from "../context/UserProvider";
+
+import LogoStudent from "../assets/images/logo-v-white.svg";
+import LogoDriver from "../assets/images/logo-vd-white.svg";
 
 import Header from "./Header";
 
 const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
+  const { users } = useUser();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -29,21 +33,23 @@ const Layout = ({ children }) => {
 
   return (
     <div className="flex flex-col min-h-screen w-full">
-      {/* Content and sidebar */}
       <div className="lg:hidden z-10 sticky top-0">
         <Header />
       </div>
 
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar (always open on larger screens) */}
         <aside
           className={`w-64 bg-[#000] text-white ${
             isSidebarOpen ? "" : "hidden"
           } lg:block`}
         >
-          {/* Sidebar content */}
           <div className="p-4">
-            <h1 className="text-xl font-semibold">CampusGo</h1>
+            {users?.role == "DRIVER" ? (
+              <img src={LogoDriver} />
+            ) : (
+              <img src={LogoStudent} />
+            )}
+
             <ul className="mt-4 ml-4">
               <li>
                 <Link

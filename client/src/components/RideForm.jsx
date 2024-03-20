@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 
-
-const TransferForm = ({ onSubmit, onScan }) => {
+const RideForm = ({ onSubmit, onScan }) => {
   const [formData, setFormData] = useState({
     amount: 0,
-    recipient: onScan, 
-    description: "",
+    recipient: onScan,
   });
 
- // console.log("TRANSFER FORM", onScan);
+  // console.log("TRANSFER FORM", onScan);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +31,7 @@ const TransferForm = ({ onSubmit, onScan }) => {
           htmlFor="recipient"
           className="block text-sm font-medium text-gray-700"
         >
-          Recipient Username
+          Driver Username
         </label>
         <input
           type="text"
@@ -51,7 +49,7 @@ const TransferForm = ({ onSubmit, onScan }) => {
           htmlFor="amount"
           className="block text-sm font-medium text-gray-700"
         >
-          Amount (BFT)
+          Ride Amount (BFT)
         </label>
         <input
           type="number"
@@ -66,30 +64,15 @@ const TransferForm = ({ onSubmit, onScan }) => {
           Equivalent NGN: {formData.amount * 4.5} NGN
         </p>
       </div>
-      <div className="mb-4">
-        <label
-          htmlFor="description"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Description (Optional)
-        </label>
-        <textarea
-          id="description"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          className="block w-full  p-4 border border-black rounded-md shadow-sm mb-2"
-          rows="3"
-        ></textarea>
-      </div>
+
       <button
         type="submit"
         className="bg-black text-white py-2 px-4  rounded-md hover:bg-[#3F713E] "
       >
-        Send
+        Pay for ride
       </button>
     </form>
   );
 };
 
-export default TransferForm;
+export default RideForm;

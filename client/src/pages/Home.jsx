@@ -1,13 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HideText from "../components/HideText";
 import { Link } from "react-router-dom";
+import { useUser } from "../context/UserProvider";
+import ReadContract from "../plugins/readContract.js";
 
 import scanImg from "../assets/images/scan.png";
 import receiptImg from "../assets/images/receipt.png";
 import depositImg from "../assets/images/deposit.png";
 
 const Home = () => {
+  const { users } = useUser();
   const [isHidden, setIsHidden] = useState(true);
+  const [balance, setBalance] = useState(null);
+
+  useEffect(() => {
+    fetchBalance();
+  }, [users]);
+
+  const nairaEquivalent = 4.5;
+
+  const fetchBalance = async () => {
+    try {
+      const walletAddress = users?.wallet_address;
+      const bftBalance = await ReadContract.getBFTBalance(walletAddress);
+      setBalance(parseFloat(bftBalance)?.toFixed(2));
+     // console.log(bftBalance);
+    } catch (error) {
+      console.error("Error fetching balance:", error);
+    }
+  };
 
   const toggleHidden = () => {
     setIsHidden(!isHidden);
@@ -18,7 +39,10 @@ const Home = () => {
       <div>
         <div className="font-al-medium text-xl md:text-md">
           Welcome,{" "}
-          <span className="font-al-bold font-semibold ">IMAM ABUBAKAR</span> 👋
+          <span className="font-al-bold font-semibold ">
+            {users?.firstname?.toUpperCase()} {users?.lastname?.toUpperCase()}
+          </span>{" "}
+          👋
         </div>
         <div className="font-al-medium">What would you like to do today?</div>
       </div>
@@ -36,16 +60,25 @@ const Home = () => {
             <h2 className="text-sm font-normal font-al-medium mb-2">
               NGN Balance
             </h2>
-            <p className="text-xl font-bold font-al-bold">
-              <HideText text={"₦ 100,000.00"} isHidden={isHidden} />
-            </p>
+            {balance ? (
+              <p className="text-xl font-bold font-al-bold">
+                <HideText
+                  text={`₦ ${(balance * nairaEquivalent)?.toFixed(2)}`}
+                  isHidden={isHidden}
+                />
+              </p>
+            ) : (
+              <p className="text-xl font-bold font-al-bold">
+                <HideText text={`₦ 00.0`} isHidden={isHidden} />
+              </p>
+            )}
           </div>
           <div className="bg-[#3F713E] rounded-lg shadow-md pl-6 pr-12 py-6 md:w-72 my-2">
             <h2 className="text-sm text-white font-normal font-al-medium mb-2">
               Exchange Rate
             </h2>
             <p className="text-xl font-bold font-al-bold text-white">
-              1 BFT = ₦ 100
+              1 BFT = ₦ {nairaEquivalent}
             </p>
           </div>
         </div>
@@ -62,7 +95,10 @@ const Home = () => {
             className="bg-black rounded-lg shadow-md px-6 py-6 md:w-96 my-2 text-white flex justify-between items-center"
           >
             <div className="text-lg font-normal font-al-medium tracking-wide md:w-64">
-              Scan your driver's special QRCode to make ride payments
+              {users?.role == "DRIVER"
+                ? "Download and share your special QRCode to receive ride payments"
+                : "Scan your driver's special QRCode to make ride payments"}{" "}
+              
             </div>
             <img src={scanImg} className="w-24" alt="scan" />
           </Link>
