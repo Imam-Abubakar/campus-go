@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </BrowserRouter>
     <PWAPrompt
       promptOnVisit={1}
-      timesToShow={10}
+      timesToShow={3}
       copyClosePrompt="Close"
       permanentlyHideOnDismiss={false}
     />
