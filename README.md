@@ -1,24 +1,28 @@
 # CampusGo
-![sTUDENT](https://github.com/Imam-Abubakar/campus-go/assets/54324954/65bb74e3-2d1c-4f50-b731-77e7b8ab3d0c)
+![Cover](https://github.com/Imam-Abubakar/campus-go/assets/54324954/65bb74e3-2d1c-4f50-b731-77e7b8ab3d0c)
 
 CampusGo is a ___progressive web app(PWA)___ that aims to eliminate the use of cash payment systems for paying for transport fare within the campus in Nigerian universities or polytechnics. By introducing a cashless and user-friendly platform, CampusGo aims to streamline the entire transportation process, providing students with a convenient, secure, and efficient means of paying for rides within the campus.
 It also aims to regulate and improve the transportation system on campus by providing a platform for the students, drivers, and school administrators to interact and manage their transactions, feedback, and complaints.
 
 ## Demo
+[![Video Presentation](https://github.com/Imam-Abubakar/campus-go/assets/54324954/2938d51d-96d2-40e4-aca0-7b9749e81ab0)](https://drive.google.com/file/d/1PkVsO6I2nJeZ0rGa5nHfsx5pRRGhTjJV/view?usp=sharing)
 
+___Student & Driver Webapp:___ [Access here](https://campus-go.netlify.app)
 
-___Here is the link to the Product Requirements Document (PRD)___
-https://docs.google.com/document/d/1VMY-gIN3DvrZoknBwxII8NGAzMSxm-UrfINlOxUn50I/edit?usp=drivesdk 
+__Login credentials:__ 
+| User Type | Email | Password |
+|----------|----------|----------|
+| Student | demostudent001@campusgo.com | Test@123 |
+| Driver | demodriver001@campusgo.com | Test@123 |
+                   
+___Product Requirements Document (PRD):___ [Access here](https://docs.google.com/document/d/1VMY-gIN3DvrZoknBwxII8NGAzMSxm-UrfINlOxUn50I/edit?usp=drivesdk )
 
-___Here is the link to the Student & Driver Webapp:___
-https://campus-go.vercel.app
+___Figma Design for the Driver & Admin Webapp:___ [Access here](https://www.figma.com/file/7iftREaFX4S0jLEEoH5x0r/Untitled?type=design&node-id=3%3A9&mode=design&t=2YsVJyzfsVKQqzk2-1) 
 
-___Here is the link to Figma Design for the Driver & Admin Webapp___
-https://www.figma.com/file/7iftREaFX4S0jLEEoH5x0r/Untitled?type=design&node-id=3%3A9&mode=design&t=2YsVJyzfsVKQqzk2-1 
+___Smart Contract:___ [Access here](https://explorer.bitfinity.network/address/0xc5F8Cb8c9431e1E26B4F1C72e2BeA60D8B2B687F)
 
 ## Problem Statement:
-Students face many challenges on campus, one of which is the hassle of paying for transport fare and waiting to receive change as the driver may not have change and all. This causes delays, inconveniences, and conflicts. Moreover, the current transportation system on campus is not well regulated or monitored by the school authorities, leading to issues such as safety, transparency, and efficiency.
- CampusGo addresses these issues by offering a holistic solution that enhances the overall campus transport experience.
+Students face many challenges on campus, one of which is the hassle of paying for transport fare and waiting to receive change as the driver may not have change and all. This causes delays, inconveniences, and conflicts. Moreover, the current transportation system on campus is not well regulated or monitored by the school authorities, leading to issues such as safety, transparency, and efficiency. CampusGo addresses these issues by offering a holistic solution that enhances the overall campus transport experience.
 
 ## Product Goal:
 CampusGo's primary goal is to create a seamless, cashless, and transparent transportation ecosystem on campus. The platform aims to improve the daily lives of students, empower drivers with financial tools, and provide administrators with valuable insights for efficient management.
